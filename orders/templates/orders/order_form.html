@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    {% if order %}
+        <p>Updated {{ order.updated_date }}</p>
+    {% endif %}
+    <input type="submit" value="Submit" />
+
+</form>
+{% endblock %}

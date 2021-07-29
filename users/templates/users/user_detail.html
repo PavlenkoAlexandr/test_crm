@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>User: {{ object.get_full_name }}</h1>
+
+<p><strong><a href="{% url 'user-detail-update' object.id %}">Edit data</a></strong></p>
+  <p><strong>Type:</strong>{{ object.get_is_staff_display }}</p>
+  <p><strong>Full name:</strong> {{ object.get_full_name }}</p>
+  <p><strong>Email:</strong> {{ object.email }}</p>
+  {% if user.id == object.id %}
+    <p><strong><a href="{% url 'user-orders' object.id %}">My orders</a></strong></p>
+  {% else %}
+    <p><strong><a href="{% url 'user-orders' object.id %}">User orders</a></strong></p>
+  {% endif %}
+
+<div style="margin-left:20px;margin-top:20px">
+
+    <h4>Contacts</h4>
+    <hr>
+    <p><strong>Phone:</strong> {{ object.contact.phone }}</p>
+    <p><strong>Telegram:</strong> {{ object.contact.telegram }}
+    {% if not object.is_sub %}
+    {% if object.contact.telegram %}  <a href="{% url 'confirm-subscribe' %}">subscribe to updates</a>
+    {% else %} Add your Telegram for subscribe to updates <a href="{% url 'user-detail-update' object.id %}">(add)</a></p>
+    {% endif %}{% endif %}
+    <p><strong>Address:</strong>{{ object.contact.get_address }}</p>
+
+</div>
+
+
+{% endblock %}

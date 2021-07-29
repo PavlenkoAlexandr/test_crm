@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h4>
+        {% if lookup_user.is_staff %}
+          Worker <a href="{{ lookup_user.get_absolute_url }}"> {{ lookup_user }} </a>orders:
+        {% else %}
+          Customer<a href="{{ lookup_user.get_absolute_url }}"> {{ lookup_user }} </a>orders:
+        {% endif %}
+    </h4>
+
+    <hr>
+
+    <h5>
+          {% if user.is_staff %}
+             <a href="{% url 'order-staff-create'%}">Create new order</a>
+          {% else %}
+             <a href="{% url 'order-create'%}">Create new order</a>
+          {% endif %}
+    </h5>
+
+    <hr>
+
+    {% if order_list %}
+<form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+        <hr>
+      {% for order in order_list %}
+
+        <hr>
+        <p><strong><a href="{{ order.get_absolute_url }}">Order #{{ order.order_id }}</a>:
+        {% if user.is_staff %}
+          <p><strong>Customer: </strong> <a href="{{ order.customer_id.get_absolute_url }}">{{ order.customer_id }}</a></p>
+        {% endif %}
+        <p><strong>Status: </strong> {{ order.get_status_display }}</p>
+        <p><strong>Type: </strong>{{ order.get_order_type_display }}</p>
+        <p><strong>Worker: </strong> <a href="{{ order.orderworker.worker_id.get_absolute_url }}">{{ order.orderworker.worker_id }}</a></p>
+        <p><strong>Date: </strong> {{ order.updated_date }}</p>
+      {% endfor %}
+    {% else %}
+      <p>There are no orders.</p>
+    {% endif %}
+
+{% endblock %}
+

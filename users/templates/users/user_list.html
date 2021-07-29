@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Users List</h1>
+
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+
+    {% if user_list %}
+    <ul>
+
+      {% for user in user_list %}
+      <li>
+        <a href="{{ user.get_absolute_url }}">{{ user }}</a> ({{ user.get_is_staff_display }})
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no users.</p>
+    {% endif %} 
+{% endblock %}

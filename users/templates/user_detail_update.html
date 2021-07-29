@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+    <h1>User detail</h1>
+
+    <form action="{% url 'user-detail-update' pk%}" method="post">
+        {{ user_form.as_p }}
+        {{ contacts_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="user detail update"></p>
+    </form>
+{% endblock %}

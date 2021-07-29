@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ order }}</h1>
+  {% if user.is_staff %}
+    <p><a href="{% url 'order-staff-update' order.order_id %}">Edit order</a></p>
+  {% else %}
+    <p><a href="{% url 'order-update' order.order_id %}">Edit order</a></p>
+  {% endif %}
+  <p><strong>Status:</strong> {{ order.get_status_display }}</p>
+  <p><strong>Customer:</strong> <a href="{{ order.customer_id.get_absolute_url }}">{{ order.customer_id }}</a></p>
+  <p><strong>Worker: </strong> <a href="{{ order.orderworker.worker_id.get_absolute_url }}">{{ order.orderworker.worker_id }}</a></p>
+  <p><strong>Type: </strong>{{ order.get_order_type_display }}</p>
+  <p><strong>Description:</strong> {{ order.description }}</p>
+  <p><strong>Updated date:</strong> {{ order.updated_date }}</p>
+  <p><strong>Created date:</strong> {{ order.created_date }}</p>
+  {% if user.is_staff or order.status != "N" %}
+    <p><a href="{% url 'order-delete' order.order_id %}">Delete order</a></p>
+  {% endif %}
+
+{% endblock %}

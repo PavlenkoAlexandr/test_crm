@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Confirm Subscribe</h1>
+
+    <p>1. Добавте нашего бота <strong>{{ chat_bot_name }}</strong> в список контактов и напишите ему любое сообщение. </p>
+    <p>2. Нажмите на кнопку Confirm Subscribe для подтверждения подписки.</p>
+    <p>3. Если вы снова видите эту страницу, значит вы не добавили или добавили неверный Telegram аккаунт.</p>
+
+    <form action="{% url 'confirm-subscribe'%}" method="post">
+        {% csrf_token %}
+        <p><input type="submit" value="Confirm Subscribe"></p>
+    </form>
+{% endblock %}

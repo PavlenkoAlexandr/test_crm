@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Order update</h1>
+
+    <form action="{% url 'order-staff-update' pk%}" method="post">
+        {{ order_form.as_p }}
+        {{ order_worker_form.as_p }}
+        {% csrf_token %}
+        <p>Updated {{ lookup_order.updated_date }}</p>
+        <p><input type="submit" value="order detail update"></p>
+    </form>
+{% endblock %}
