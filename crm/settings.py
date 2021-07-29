@@ -159,5 +159,7 @@ DATABASES['default'].update(db_from_env)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 django_heroku.settings(locals())
