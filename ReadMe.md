@@ -1,6 +1,6 @@
 # My CRM. Тестовое задание для ДомКлик.
 
-### Развернуто на Heroku [pavlenko-my-crm.herokuapp.com](pavlenko-my-crm.herokuapp.com)
+### Развернуто на Heroku [pavlenko-my-crm.herokuapp.com](https://pavlenko-my-crm.herokuapp.com)
 
 CRM для регистрации и обработки
 входящих заявок от пользователей.
